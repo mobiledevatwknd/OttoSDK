@@ -23,7 +23,7 @@ dependencyResolutionManagement {
          ** Or set env variable GPR_USER & GPR_API_KEY if not adding a properties file**/
 
         username = "AlifGarindra"
-        password = "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"
+        password = "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"
       }
     }
   }
