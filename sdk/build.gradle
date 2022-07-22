@@ -53,7 +53,7 @@ project.afterEvaluate {
           afterEvaluate {
             groupId 'com.otto'
             artifactId = "sdk"
-            version '0.0.22'
+            version '0.0.25'
             if (plugins.hasPlugin("java")) {
               from components.java
             } else if (plugins.hasPlugin("android-library")) {
@@ -66,7 +66,7 @@ project.afterEvaluate {
               credentials {
                 username = "mobiledevatwknd"
 //                password = "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"
-                password = "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"
+                password = "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"
               }
             }
           }

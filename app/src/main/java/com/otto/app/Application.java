@@ -7,7 +7,9 @@ public class Application extends android.app.Application {
   public void onCreate() {
     super.onCreate();
     SdkUIBuilder.init(this)
-        .setClientKey("V46eGCQA7YiZDCFT2ie89JZ2pwhNax")
+//        .setClientKey("V46eGCQA7YiZDCFT2ie89JZ2pwhNax")
+        .setClientKey("QzzEp5g29fFymxeMX27vc2W9mZ2Qab")
+//        .setClientKey("faupAKQvQ7K4tAbf2T68FXu3Sg4aGc")
         .enableLog(BuildConfig.DEBUG)
         .buildSDK();
   }

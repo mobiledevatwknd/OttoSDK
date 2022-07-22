@@ -45,7 +45,6 @@ public class MainActivity extends AppCompatActivity implements OttoListener {
             .setAction("Action", null).show();
       }
     });
-
   }
 
   @Override

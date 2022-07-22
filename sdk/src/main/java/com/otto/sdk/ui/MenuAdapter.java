@@ -1,21 +1,18 @@
 package com.otto.sdk.ui;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.otto.sdk.OttoSDK;
 import com.otto.sdk.R;
-import com.otto.sdk.model.menu.Feature;
+import com.otto.sdk.event.MenuItemClickListener;
 import com.otto.sdk.model.menu.Item;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
@@ -49,9 +46,7 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
     holder.view.setOnClickListener(new View.OnClickListener() {
       @Override
       public void onClick(View v) {
-        Log.d("mmm", "asdasd" + index);
         listener.onItemClick();
-        Toast.makeText(context, "Menu : " + label, Toast.LENGTH_SHORT).show();
       }
     });
   }
@@ -61,6 +56,4 @@ public class MenuAdapter extends RecyclerView.Adapter<MenuViewHolder> {
   public int getItemCount() {
     return items.size();
   }
-
-
 }

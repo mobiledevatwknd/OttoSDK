@@ -4,29 +4,33 @@ import android.util.Log;
 
 
 public class Logger {
-  public static boolean enabled = true;
+//  public static boolean enabled = OttoSDK.getInstance().isEnableLog();
+
+  private static boolean isEnabled() {
+    return OttoSDK.getInstance().isEnableLog();
+  }
 
   public static void d(String tag, String message) {
-    if (enabled) {
+    if (isEnabled()) {
       Log.d("" + tag, "" + message);
     }
   }
 
   public static void d(String message) {
-    if (enabled) {
+    if (isEnabled()) {
       Log.d(Constants.TAG, "" + message);
     }
   }
 
 
   public static void i(String tag, String message) {
-    if (enabled) {
+    if (isEnabled()) {
       Log.i("" + tag, "" + message);
     }
   }
 
   public static void i(String message) {
-    if (enabled) {
+    if (isEnabled()) {
       Log.i(Constants.TAG, "" + message);
     }
   }
@@ -42,7 +46,7 @@ public class Logger {
   }
 
   public static void e(String message) {
-    if (enabled) {
+    if (isEnabled()) {
       Log.e(Constants.TAG, "" + message);
     }
   }

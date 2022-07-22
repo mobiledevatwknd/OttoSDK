@@ -3,17 +3,19 @@ package com.otto.sdk;
 import android.app.Activity;
 import android.app.Application;
 import android.content.Context;
+import android.util.Log;
 
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.toolbox.Volley;
+import com.otto.sdk.event.OpenFeatureListener;
 import com.otto.sdk.model.iframe.ResIframe;
 import com.otto.sdk.model.login.ResLogin;
 import com.otto.sdk.model.menu.Menu;
 import com.otto.sdk.model.token.BaseResponse;
 import com.otto.sdk.parser.JacksonRequest;
-import com.otto.sdk.ui.MenuFeature;
+import com.otto.sdk.event.MenuFeatureListener;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -26,14 +28,14 @@ public class OttoSDK {
   private String token = "";
   private String clientKey = null;
   private Context context = null;
-
+  private boolean enableLog = false;
   private Application mApplication = null;
   private Activity mActivity = null;
 
   private static OttoListener ottoListener = null;
-  private Map<String, Integer> drawables = new HashMap<String, Integer>(){
+  private Map<String, Integer> drawables = new HashMap<String, Integer>() {
     {
-      put("telepon-dan-air", R.drawable.ic_imkas_phone );
+      put("telepon-dan-air", R.drawable.ic_imkas_phone);
       put("listrik", R.drawable.ic_imkas_pln);
       put("voucher-game", R.drawable.ic_imkas_game);
       put("donasi", R.drawable.ic_imkas_duit);
@@ -50,12 +52,25 @@ public class OttoSDK {
   private OttoSDK(SdkBuilder sdkBuilder) {
     this.clientKey = sdkBuilder.clientKey;
     this.context = sdkBuilder.context;
+    this.enableLog = sdkBuilder.enableLog;
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
+    Log.e("XXXXXXXXbbb", enableLog ? "true" : "false");
   }
 
   protected static OttoSDK delegateInstance(SdkBuilder newSdkBuilder) {
     if (newSdkBuilder != null) {
       ottoSDK = new OttoSDK(newSdkBuilder);
       sdkBuilder = newSdkBuilder;
+      ottoSDK.getSDKToken();
     } else {
       Logger.e("sdk is not initialized");
     }
@@ -89,31 +104,7 @@ public class OttoSDK {
     return drawables;
   }
 
-  public static void getSaldo(OttoListener listener) {
-//    ottoListener = listener;
-//    WritableMap props = new WritableNativeMap();
-//    props.putString("x", "xvalue");
-//    props.putInt("y", 123);
-//    ottoSDK.sendToJS(ottoSDK.application.getReactNativeHost().getReactInstanceManager().getCurrentReactContext(), "getSaldo", props);
-  }
-
-  public static void onSaldoUpdate(String totalSaldo) {
-    ottoListener.onSaldoUpdate(totalSaldo);
-  }
-
-  public static void getUserProfile(String phoneNumber, OttoListener listener) {
-//    WritableMap props = new WritableNativeMap();
-//    props.putString("phone_number", phoneNumber);
-//    ottoListener = listener;
-//    ReactContext reactContext = ottoSDK.application.getReactNativeHost().getReactInstanceManager().getCurrentReactContext();
-//    ottoSDK.sendToJS(reactContext, "getUserProfile", props);
-  }
-
-  public static void onUserProfile(String profileData) {
-    ottoListener.onUserProfile(profileData);
-  }
-
-  public void getFeatures(MenuFeature listener) {
+  public void getFeatures(MenuFeatureListener listener) {
     RequestQueue queue = Volley.newRequestQueue(ottoSDK.context);
     String url = "https://app.weekendinc.com/data/data.json";
     Response.Listener<Menu> onSuccess = response -> {
@@ -188,16 +179,20 @@ public class OttoSDK {
     queue.add(jacksonRequest);
   }
 
-  public void requestGoldIframe() {
+  public void openGoldFeature(OpenFeatureListener listener) {
     RequestQueue queue = Volley.newRequestQueue(ottoSDK.context);
     String url = Constants.HOST_URL + "/gold/get_iframe";
     Response.Listener<ResIframe> onSuccess = response -> {
       Logger.e(response.toString());
       Logger.e(response.getData().toString());
+      listener.onSuccess(response.getCode());
       WebContent.openFeature(ottoSDK.context, response.getData().getIframeUrl(), "www.google.com");
     };
 
-    JacksonRequest.FailureListener onFail = (code, message) -> Logger.e("FAIL:" + code + ": " + message);
+    JacksonRequest.FailureListener onFail = (code, message) -> {
+      Logger.e("FAIL:" + code + ": " + message);
+      listener.onFail(new Error(message));
+    };
 
     HashMap<String, String> headers = new HashMap<>();
     headers.put("wknd-token", token);
@@ -211,5 +206,9 @@ public class OttoSDK {
         onSuccess,
         onFail);
     queue.add(jacksonRequest);
+  }
+
+  public boolean isEnableLog() {
+    return enableLog;
   }
 }

@@ -2,7 +2,6 @@ package com.otto.sdk;
 
 import android.content.Context;
 
-
 public abstract class SdkBuilder {
   public static final String UI_FLOW = "ui";
   public static final String CORE_FLOW = "core";
@@ -16,7 +15,7 @@ public abstract class SdkBuilder {
     if (isValidData()) {
       return OttoSDK.delegateInstance(this);
     } else {
-      Logger.e("already performing an transaction");
+      Logger.e("invalid sdk properties");
     }
     return null;
   }

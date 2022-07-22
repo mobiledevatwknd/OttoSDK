@@ -1,4 +1,4 @@
-package com.otto.sdk.ui;
+package com.otto.sdk.event;
 
 public interface MenuItemClickListener {
   public void onItemClick();
