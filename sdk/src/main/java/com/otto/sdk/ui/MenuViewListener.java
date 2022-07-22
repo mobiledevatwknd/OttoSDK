@@ -55,18 +55,9 @@ public class MenuView extends LinearLayout implements MenuItemClickListener, Men
   }
 
   private void init(AttributeSet attrs, int defStyle) {
-    // Load attributes
+    // Load layout xml
     LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
     View view = layoutInflater.inflate(R.layout.menu_view, this);
-//    ProgressBar progressBar = view.findViewById(R.id.vLoading);
-//    progressBar
-//    RecyclerView rv_menu = findViewById(R.id.rv_menu);
-//
-//    GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 4);
-//    MenuAdapter adapter = new MenuAdapter(this.getContext(), Utils.getMenu(), this);
-//
-//    rv_menu.setLayoutManager(gridLayoutManager);
-//    rv_menu.setAdapter(adapter);
     Runnable task = new Runnable() {
       @Override
       public void run() {
@@ -80,7 +71,6 @@ public class MenuView extends LinearLayout implements MenuItemClickListener, Men
 
   @Override
   public void onItemClick() {
-    Logger.e("halllllo");
     OttoSDK.getInstance().requestGoldIframe();
   }
 
@@ -99,12 +89,10 @@ public class MenuView extends LinearLayout implements MenuItemClickListener, Men
           }
         }).findFirst()
         .orElse(null);
+
+    // TODO: test for null condition
 //    feature = null;
 
-//    Logger.e(feature.toString());
-//    Logger.e(feature.toString());
-//    Logger.e(feature.toString());
-//    Logger.e(feature.toString());
     if (feature == null) {
       vLoading.setVisibility(View.GONE);
       recyclerView.setVisibility(View.GONE);
@@ -114,11 +102,8 @@ public class MenuView extends LinearLayout implements MenuItemClickListener, Men
     tvStatus.setVisibility(View.GONE);
     vLoading.setVisibility(View.GONE);
     recyclerView.setVisibility(View.VISIBLE);
-//    LayoutInflater layoutInflater = (LayoutInflater) this.getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-//    View view = layoutInflater.inflate(R.layout.menu_view, this);
     ((View) findViewById(R.id.vLoading)).setVisibility(View.GONE);
     recyclerView.setVisibility(View.VISIBLE);
-
 
     GridLayoutManager gridLayoutManager = new GridLayoutManager(this.getContext(), 4);
     MenuAdapter adapter = new MenuAdapter(this.getContext(), feature.getItem(), this);

@@ -4,6 +4,6 @@ import com.otto.sdk.model.menu.Menu;
 
 import java.util.List;
 
-public interface MenuFeature {
+public interface MenuFeatureListener {
   void onFeatures(Menu menu);
 }
