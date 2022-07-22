@@ -14,11 +14,15 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.otto.app.databinding.ActivityMainBinding;
+import com.otto.sdk.OttoListener;
+import com.otto.sdk.OttoSDK;
+import com.otto.sdk.SdkUIBuilder;
+import com.otto.sdk.WebContent;
 
 import android.view.Menu;
 import android.view.MenuItem;
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements OttoListener {
 
   private AppBarConfiguration appBarConfiguration;
   private ActivityMainBinding binding;
@@ -41,6 +45,7 @@ public class MainActivity extends AppCompatActivity {
             .setAction("Action", null).show();
       }
     });
+
   }
 
   @Override
@@ -70,5 +75,20 @@ public class MainActivity extends AppCompatActivity {
     NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment_content_main);
     return NavigationUI.navigateUp(navController, appBarConfiguration)
         || super.onSupportNavigateUp();
+  }
+
+  @Override
+  public void onSaldoUpdate(String saldo) {
+    // TODO:
+  }
+
+  @Override
+  public void onUserProfile(String profileData) {
+    // TODO:
+  }
+
+  @Override
+  public void onFeatures(String features) {
+
   }
 }

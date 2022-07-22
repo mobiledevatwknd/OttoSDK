@@ -4,16 +4,17 @@ import android.content.Context;
 
 public class SdkUIBuilder extends SdkBuilder {
 
-  private SdkUIBuilder() {
+  private SdkUIBuilder(Context context) {
+    this.context = context;
   }
 
-  private SdkUIBuilder(OttoApplication application, String clientKey) {
-    this.application = application;
+  private SdkUIBuilder(Context context, String clientKey) {
+    this.context = context;
     this.clientKey = clientKey;
   }
 
-  public static SdkUIBuilder init() {
-    return new SdkUIBuilder();
+  public static SdkUIBuilder init(Context context) {
+    return new SdkUIBuilder(context);
   }
 
 
@@ -22,8 +23,8 @@ public class SdkUIBuilder extends SdkBuilder {
     return this;
   }
 
-  public SdkUIBuilder setApplication(OttoApplication application) {
-    this.application = application;
+  public SdkUIBuilder setContext(Context context) {
+    this.context = context;
     return this;
   }
 

@@ -9,6 +9,7 @@ public abstract class SdkBuilder {
 
   protected String clientKey = null;
   protected OttoApplication application = null;
+  protected Context context = null;
   protected boolean enableLog = false;
 
   public OttoSDK buildSDK() {

@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
   xmlns:app="http://schemas.android.com/apk/res-auto"
   xmlns:tools="http://schemas.android.com/tools"
   android:layout_width="match_parent"
   android:layout_height="match_parent"
+  android:orientation="vertical"
   tools:context=".FirstFragment">
 
   <TextView
@@ -11,10 +12,19 @@
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
     android:text="@string/hello_first_fragment"
-    app:layout_constraintBottom_toTopOf="@id/button_first"
+    app:layout_constraintBottom_toTopOf="@id/menuView"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
+
+  <com.otto.sdk.ui.MenuView
+    android:id="@+id/menuView"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:layout_constraintBaseline_toBottomOf="@id/textview_first"
+    app:layout_constraintBaseline_toTopOf="@id/button_first"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintEnd_toStartOf="parent" />
 
   <Button
     android:id="@+id/button_first"
@@ -24,5 +34,5 @@
     app:layout_constraintBottom_toBottomOf="parent"
     app:layout_constraintEnd_toEndOf="parent"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@id/textview_first" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+    app:layout_constraintTop_toBottomOf="@id/menuView" />
+</LinearLayout>

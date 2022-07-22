@@ -14,6 +14,7 @@ public class WebContent extends AppCompatActivity {
     Intent webContent = new Intent(context, WebContent.class);
     webContent.putExtra("url", value);
     webContent.putExtra("closeurl", value2);
+    webContent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
     context.startActivity(webContent);
   }
 

@@ -1,0 +1,24 @@
+###
+# @host = 'https://sakti-8.mysirclo.com/api'
+@ottohost = 'http://128.199.208.36:2002/api'
+
+@_headerSession = 'wknd-token: {{token.response.body.data.token_code}}'
+###
+# @name token
+curl --request post {{ottohost}}/token/get
+  -d name=admin
+  -d secret_key=admin123
+###
+curl --request post {{ottohost}}/token/login
+  --header {{_headerSession}}
+  -d email=billy.ardiwan@weekendinc.com
+  -d password=Weekendinc123!
+###
+curl --request post {{ottohost}}/gold/get_iframe
+  --header {{_headerSession}}
+  -d email=asdf
+###
+curl --request get https://app.weekendinc.com/data/data.json
+  --header 'Content-Type: application/json'
+  -d x=x
+###

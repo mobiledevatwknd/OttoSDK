@@ -10,6 +10,7 @@ import androidx.fragment.app.Fragment;
 import androidx.navigation.fragment.NavHostFragment;
 
 import com.otto.app.databinding.FragmentFirstBinding;
+import com.otto.sdk.OttoSDK;
 
 public class FirstFragment extends Fragment {
 

@@ -1,0 +1,7 @@
+<resources>
+
+  <style name="Widget.Theme.OttoSDK.MyView" parent="">
+    <item name="android:background">@color/black</item>
+    <item name="exampleColor">@color/black</item>
+  </style>
+</resources>
