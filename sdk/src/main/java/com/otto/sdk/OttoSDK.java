@@ -186,7 +186,8 @@ public class OttoSDK {
       Logger.e(response.toString());
       Logger.e(response.getData().toString());
       listener.onSuccess(response.getCode());
-      WebContent.openFeature(ottoSDK.context, response.getData().getIframeUrl(), "www.google.com");
+      String emasUrl = "http://128.199.208.36:3302";//?queryToken=" + response.getData().getIframeUrl();
+      WebContent.openFeature(ottoSDK.context, emasUrl, "http://128.199.208.36:3302", token);
     };
 
     JacksonRequest.FailureListener onFail = (code, message) -> {
