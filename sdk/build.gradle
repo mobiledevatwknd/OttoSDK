@@ -66,7 +66,7 @@ project.afterEvaluate {
               credentials {
                 username = "mobiledevatwknd"
 //                password = "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"
-                password = "  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"
+                password = "  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"
               }
             }
           }
