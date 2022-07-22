@@ -1,4 +1,4 @@
-package com.otto.sdk.event;
+package com.otto.sdk.ui;
 
 import android.content.Context;
 import android.graphics.Color;
@@ -16,9 +16,11 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.otto.sdk.OttoSDK;
 import com.otto.sdk.R;
+import com.otto.sdk.event.MenuFeatureListener;
+import com.otto.sdk.event.MenuItemClickListener;
+import com.otto.sdk.event.OpenFeatureListener;
 import com.otto.sdk.model.menu.Feature;
 import com.otto.sdk.model.menu.Menu;
-import com.otto.sdk.ui.MenuAdapter;
 
 import java.util.List;
 import java.util.concurrent.Executors;
@@ -29,7 +31,7 @@ import java.util.function.Predicate;
 /**
  * TODO: document your custom view class.
  */
-public class MenuViewListener extends LinearLayout implements MenuItemClickListener, MenuFeatureListener {
+public class MenuView extends LinearLayout implements MenuItemClickListener, MenuFeatureListener {
   private String mExampleString; // TODO: use a default from R.string...
   private int mExampleColor = Color.RED; // TODO: use a default from R.color...
   private float mExampleDimension = 0; // TODO: use a default from R.dimen...
@@ -39,17 +41,17 @@ public class MenuViewListener extends LinearLayout implements MenuItemClickListe
   private float mTextWidth;
   private float mTextHeight;
 
-  public MenuViewListener(Context context) {
+  public MenuView(Context context) {
     super(context);
     init(null, 0);
   }
 
-  public MenuViewListener(Context context, AttributeSet attrs) {
+  public MenuView(Context context, AttributeSet attrs) {
     super(context, attrs);
     init(attrs, 0);
   }
 
-  public MenuViewListener(Context context, AttributeSet attrs, int defStyle) {
+  public MenuView(Context context, AttributeSet attrs, int defStyle) {
     super(context, attrs, defStyle);
     init(attrs, defStyle);
   }
@@ -62,7 +64,7 @@ public class MenuViewListener extends LinearLayout implements MenuItemClickListe
       @Override
       public void run() {
 
-        OttoSDK.getInstance().getFeatures(MenuViewListener.this);
+        OttoSDK.getInstance().getFeatures(MenuView.this);
       }
     };
     ScheduledExecutorService worker = Executors.newSingleThreadScheduledExecutor();

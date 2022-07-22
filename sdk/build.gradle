@@ -53,7 +53,7 @@ project.afterEvaluate {
           afterEvaluate {
             groupId 'com.otto'
             artifactId = "sdk"
-            version '0.0.26'
+            version '0.0.27'
             if (plugins.hasPlugin("java")) {
               from components.java
             } else if (plugins.hasPlugin("android-library")) {

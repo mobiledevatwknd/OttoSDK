@@ -17,7 +17,7 @@
     app:layout_constraintStart_toStartOf="parent"
     app:layout_constraintTop_toTopOf="parent" />
 
-  <com.otto.sdk.event.MenuViewListener
+  <com.otto.sdk.ui.MenuView
     android:id="@+id/menuView"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
