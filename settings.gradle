@@ -10,8 +10,10 @@ dependencyResolutionManagement {
   repositories {
     google()
     mavenCentral()
+    maven { url 'https://s01.oss.sonatype.org/' }
   }
 }
 rootProject.name = "OttoSDK"
 include ':app'
 include ':sdk'
+include ':mylibrary'
